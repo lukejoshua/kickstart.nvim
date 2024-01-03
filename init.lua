@@ -90,6 +90,7 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set({ 'n', 'v' }, ';', ':', { desc = 'Command', remap = false, silent = false })
 
 -- Toggle nerd tree
+-- TODO: move to init function
 vim.keymap.set('n', '<C-n>', '<cmd>NvimTreeFindFileToggle<cr>', { desc = 'Toggle File Tree', silent = true, noremap = true })
 
 -- Remap for dealing with word wrap
@@ -101,6 +102,10 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous dia
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+
+-- Move between windows
+vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Go to left window', remap = true })
+vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Go to right window', remap = true })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
