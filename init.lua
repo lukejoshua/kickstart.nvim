@@ -82,9 +82,6 @@ vim.o.completeopt = 'menuone,noselect'
 
 vim.o.termguicolors = true
 
--- Transparency
-vim.cmd 'highlight Normal ctermbg=NONE guibg=NONE'
-
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
