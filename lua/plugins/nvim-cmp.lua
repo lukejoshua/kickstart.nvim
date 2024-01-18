@@ -11,7 +11,7 @@ return {
     'hrsh7th/cmp-path',
 
     -- Adds a number of user-friendly snippets
-    'rafamadriz/friendly-snippets',
+    -- 'rafamadriz/friendly-snippets',
   },
   init = function()
     -- [[ Configure nvim-cmp ]]
@@ -19,7 +19,10 @@ return {
     local cmp = require 'cmp'
     local luasnip = require 'luasnip'
     require('luasnip.loaders.from_vscode').lazy_load()
-    luasnip.config.setup {}
+    require('luasnip.loaders.from_lua').load { paths = './lua/luasnippets' }
+    luasnip.config.setup {
+      enable_autosnippets = true,
+    }
 
     cmp.setup {
       snippet = {
@@ -40,6 +43,13 @@ return {
           behavior = cmp.ConfirmBehavior.Replace,
           select = true,
         },
+        ['<C-E>'] = cmp.mapping(function()
+          if luasnip.choice_active() then
+            luasnip.change_choice(1)
+          else
+            cmp.close()
+          end
+        end),
         ['<Tab>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
