@@ -1,5 +1,4 @@
 return {
-  enabled = false,
   'stevearc/dressing.nvim',
   lazy = true,
   init = function()
