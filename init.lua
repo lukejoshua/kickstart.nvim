@@ -60,6 +60,9 @@ vim.o.mouse = 'a'
 --  See `:help 'clipboard'`
 vim.o.clipboard = 'unnamedplus'
 
+-- Prevent scrolling off the end of the buffer
+vim.o.scrolloff = 20
+
 -- Enable break indent
 vim.o.breakindent = true
 
@@ -82,6 +85,9 @@ vim.o.completeopt = 'menuone,noselect'
 
 vim.o.termguicolors = true
 
+vim.o.showmode = false
+vim.o.lazyredraw = true
+
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
@@ -91,7 +97,8 @@ vim.keymap.set({ 'n', 'v' }, ';', ':', { desc = 'Command', remap = false, silent
 
 -- Toggle nerd tree
 -- TODO: move to init function
-vim.keymap.set('n', '<C-n>', '<cmd>NvimTreeFindFileToggle<cr>', { desc = 'Toggle File Tree', silent = true, noremap = true })
+vim.keymap.set('n', '<C-n>', '<cmd>NvimTreeFindFileToggle<cr>',
+  { desc = 'Toggle File Tree', silent = true, noremap = true })
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -107,6 +114,18 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Go to left window', remap = true })
 vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Go to right window', remap = true })
 
+-- File switcher keymap
+require 'ng-switcher'
+
+-- Typescript import-folding command
+require 'import-fold'
+
+vim.keymap.set('n', '<leader>`', function()
+  vim.cmd 'e #'
+end, { desc = 'Go to alternate file' })
+
+vim.keymap.set("n", "<leader>qe", "<cmd>e ++ff=dos<cr><cmd>set ff=unix<cr><cmd>w<cr>",
+  { desc = "Remove windows line endings" })
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
