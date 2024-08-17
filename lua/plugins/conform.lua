@@ -5,7 +5,7 @@ return {
     formatters_by_ft = {
       ['javascript'] = { 'prettierd' },
       ['javascriptreact'] = { 'prettierd' },
-      ['typescript'] = { 'prettierd' },
+      -- ['typescript'] = { 'prettierd' },
       ['typescriptreact'] = { 'prettierd' },
       ['vue'] = { 'prettierd' },
       ['css'] = { 'prettierd' },

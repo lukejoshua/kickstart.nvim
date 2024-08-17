@@ -17,7 +17,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
           imports_start = node:start()
         end
 
-        imports_end = node:end_()
+        imports_end = node:end_() + 1
       end
     end
 

@@ -4,6 +4,7 @@
 -- Adds additional commands as well to manage the behavior
 
 return {
+  enabled = false,
   'neovim/nvim-lspconfig',
   config = function()
     -- Switch for controlling whether you want autoformatting.

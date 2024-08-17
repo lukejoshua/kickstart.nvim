@@ -39,6 +39,8 @@ require('lazy').setup({
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
+  "shortcuts/no-neck-pain.nvim",
+
   -- For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
   { import = 'plugins' },
 }, {})
@@ -86,7 +88,7 @@ vim.o.completeopt = 'menuone,noselect'
 vim.o.termguicolors = true
 
 vim.o.showmode = false
-vim.o.lazyredraw = true
+vim.o.lazyredraw = false
 
 -- [[ Basic Keymaps ]]
 

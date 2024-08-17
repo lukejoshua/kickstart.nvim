@@ -1,6 +1,6 @@
 local HEIGHT_RATIO = 0.8
 local WIDTH_RATIO = 0.8
-local ENABLE_FLOATING_WINDOW = true
+local ENABLE_FLOATING_WINDOW = false
 
 return {
   'nvim-tree/nvim-tree.lua',
@@ -42,6 +42,12 @@ return {
           ['gy'] = { api.fs.copy.absolute_path, 'Fs: Copy Absolute Path' },
           ['y'] = { api.fs.copy.filename, 'Fs: Copy Name' },
           ['Y'] = { api.fs.copy.relative_path, 'Fs: Copy Relative Path' },
+
+          -- Angular
+          -- ['Ac'] = { function()
+          --
+          --
+          -- end, 'Generate [A]ngular [c]omponent' },
 
           -- Renaming
           ['r'] = { api.fs.rename, 'Rename' },
