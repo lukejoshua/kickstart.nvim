@@ -17,19 +17,8 @@ return {
     -- [[ Configure nvim-cmp ]]
     -- See `:help cmp`
     local cmp = require 'cmp'
-    local luasnip = require 'luasnip'
-    require('luasnip.loaders.from_vscode').lazy_load()
-    require('luasnip.loaders.from_lua').load { paths = './lua/luasnippets' }
-    luasnip.config.setup {
-      enable_autosnippets = true,
-    }
 
     cmp.setup {
-      snippet = {
-        expand = function(args)
-          luasnip.lsp_expand(args.body)
-        end,
-      },
       completion = {
         completeopt = 'menu,menuone,noinsert',
       },
@@ -44,17 +33,11 @@ return {
           select = true,
         },
         ['<C-E>'] = cmp.mapping(function()
-          if luasnip.choice_active() then
-            luasnip.change_choice(1)
-          else
-            cmp.close()
-          end
+          cmp.close()
         end),
         ['<Tab>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
-          elseif luasnip.expand_or_locally_jumpable() then
-            luasnip.expand_or_jump()
           else
             fallback()
           end
@@ -62,8 +45,6 @@ return {
         ['<S-Tab>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
-          elseif luasnip.locally_jumpable(-1) then
-            luasnip.jump(-1)
           else
             fallback()
           end
@@ -71,7 +52,6 @@ return {
       },
       sources = {
         { name = 'nvim_lsp' },
-        { name = 'luasnip' },
         { name = 'path' },
       },
     }
