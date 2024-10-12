@@ -1,4 +1,3 @@
--- TODO: use a telescope picker and previewer instead of dressing UI
 local function get_prefix(s)
   local index = string.find(s, '.', 1, true)
   return index and string.sub(s, 1, index - 1) or ''
@@ -28,14 +27,13 @@ local function angularFileSwitcher(current_file)
   }
 
   local function index(xs, x)
-    for index, value in ipairs(xs) do
-      if value == x then return index end
+    for idx, value in ipairs(xs) do
+      if value == x then return idx end
     end
 
     return nil
   end
 
-  -- TODO: ordering
   table.sort(items, function(a, b)
     local aHasPrefix = has_prefix(a, prefix)
     local bHasPrefix = has_prefix(b, prefix)
@@ -80,7 +78,7 @@ local function angularFileSwitcher(current_file)
       return string.sub(item, #prefix + 2)
     end,
     kind = 'ngswitch',
-  }, function(item, index)
+  }, function(item)
     if item == nil then
       return
     end
@@ -90,6 +88,7 @@ local function angularFileSwitcher(current_file)
 end
 
 
+-- TODO: refactor
 local function svelteFileSwitcher(current_file)
   local dir = vim.fs.dirname(current_file)
   local basename = vim.fs.basename(current_file)
@@ -123,7 +122,6 @@ local function svelteFileSwitcher(current_file)
     return nil
   end
 
-  -- TODO: ordering
   table.sort(items, function(a, b)
     local indexA = index(defaults, a)
     local indexB = index(defaults, b)
@@ -150,7 +148,7 @@ local function svelteFileSwitcher(current_file)
   return vim.ui.select(items, {
     prompt = 'Select file: ' .. (route == "" and "/" or route),
     kind = 'ngswitch',
-  }, function(item, index)
+  }, function(item)
     if item == nil then
       return
     end

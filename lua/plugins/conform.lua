@@ -1,3 +1,4 @@
+-- TODO: no hardcoding - it should be driven by config files
 return {
   'stevearc/conform.nvim',
   event = 'BufEnter',

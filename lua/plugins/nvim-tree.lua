@@ -1,5 +1,5 @@
-local HEIGHT_RATIO = 0.8
-local WIDTH_RATIO = 0.8
+local HEIGHT_RATIO = 1
+local WIDTH_RATIO = 1
 local ENABLE_FLOATING_WINDOW = false
 
 return {
@@ -110,7 +110,7 @@ return {
         width = ENABLE_FLOATING_WINDOW and function()
           return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
         end or {
-          min = 30,
+          min = 60,
           padding = 5,
         },
         float = {

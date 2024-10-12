@@ -99,7 +99,7 @@ vim.keymap.set({ 'n', 'v' }, ';', ':', { desc = 'Command', remap = false, silent
 
 -- Toggle nerd tree
 -- TODO: move to init function
-vim.keymap.set('n', '<C-n>', '<cmd>NvimTreeFindFileToggle<cr>',
+vim.keymap.set('n', '-', '<cmd>NvimTreeFindFileToggle<cr>',
   { desc = 'Toggle File Tree', silent = true, noremap = true })
 
 -- Remap for dealing with word wrap
@@ -121,6 +121,9 @@ require 'ng-switcher'
 
 -- Typescript import-folding command
 require 'import-fold'
+
+-- This seems to fuck files up somehow
+-- require 'go-format'
 
 vim.keymap.set('n', '<leader>`', function()
   vim.cmd 'e #'

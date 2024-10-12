@@ -107,13 +107,13 @@ return {
             nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
             -- Typescript imports
-            if server_name == 'tsserver' then
+            if server_name == 'ts_ls' then
               nmap('<leader>co', function()
                 print 'organizeImports'
                 vim.lsp.buf.code_action {
                   apply = true,
                   context = {
-                    only = { 'source.organizeImports.ts' },
+                    only = { 'source.organizeImports', 'source' },
                     diagnostics = {},
                   },
                 }
@@ -122,11 +122,11 @@ return {
                 vim.lsp.buf.code_action {
                   apply = true,
                   context = {
-                    only = { 'source.removeUnused.ts' },
+                    only = { 'source.fixAll' },
                     diagnostics = {},
                   },
                 }
-              end, 'Remove Unused Imports')
+              end, 'Fix All')
             end
 
             nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
