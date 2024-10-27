@@ -1,8 +1,3 @@
---[[
-TODO: explore or search through `:help lua-guide`
-  - https://neovim.io/doc/user/lua-guide.html
---]]
-
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
@@ -65,7 +60,7 @@ vim.o.mouse = 'a'
 vim.o.clipboard = 'unnamedplus'
 
 -- Prevent scrolling off the end of the buffer
-vim.o.scrolloff = 20
+vim.o.scrolloff = 10
 
 -- Enable break indent
 vim.o.breakindent = true
