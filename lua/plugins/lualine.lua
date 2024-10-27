@@ -1,4 +1,4 @@
-function substringAfter(str, searchTerm)
+local function substringAfter(str, searchTerm)
   -- Find the starting position of the search term within the string
   local startPos = string.find(str, searchTerm)
 
@@ -18,7 +18,7 @@ return {
   -- Set lualine as statusline
   'nvim-lualine/lualine.nvim',
   -- See `:help lualine.txt`
-  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  dependencies = { 'nvim-tree/nvim-web-devicons', "otavioschwanck/arrow.nvim" },
   opts = {
     options = {
       icons_enabled = true,
@@ -37,14 +37,21 @@ return {
             local path = vim.api.nvim_buf_get_name(0)
             local basename = vim.fs.basename(path)
 
+            local statusline = require('arrow.statusline')
+            local arrowIcon =
+                statusline.text_for_statusline_with_icons()
+
+            arrowIcon = arrowIcon and (arrowIcon .. ' ') or arrowIcon
+
             if basename:sub(1, 1) ~= '+' then
-              return str
+              return arrowIcon .. str
             end
 
+            -- svelte
             local dirname = vim.fs.dirname(path)
             local route = substringAfter(dirname, 'routes')
 
-            return basename .. " for " .. (route == "" and "/" or route)
+            return arrowIcon .. basename .. " for " .. (route == "" and "/" or route)
           end
         }
 

@@ -9,6 +9,8 @@ TODO: explore or search through `:help lua-guide`
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.opt.spell = true
+
 -- disable netrw for nvim-tree
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -122,25 +124,22 @@ require 'ng-switcher'
 -- Typescript import-folding command
 require 'import-fold'
 
+require 'highlight-yank'
+require 'split-right'
+
 -- This seems to fuck files up somehow
 -- require 'go-format'
 
-vim.keymap.set('n', '<leader>`', function()
-  vim.cmd 'e #'
-end, { desc = 'Go to alternate file' })
+vim.keymap.set(
+  'n',
+  '<leader>`',
+  function() vim.cmd 'e #' end,
+  { desc = 'Go to alternate file' }
+)
 
-vim.keymap.set("n", "<leader>qe", "<cmd>e ++ff=dos<cr><cmd>set ff=unix<cr><cmd>w<cr>",
-  { desc = "Remove windows line endings" })
--- [[ Highlight on yank ]]
--- See `:help vim.highlight.on_yank()`
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
-})
-
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
+vim.keymap.set(
+  "n",
+  "<leader>qe",
+  "<cmd>e ++ff=dos<cr><cmd>set ff=unix<cr><cmd>w<cr>",
+  { desc = "Remove windows line endings" }
+)

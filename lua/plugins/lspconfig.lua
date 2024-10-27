@@ -80,7 +80,7 @@ return {
           lineFoldingOnly = true
         }
         require('lspconfig')[server_name].setup {
-          capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities),
+          -- capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities),
 
           --  This function gets run when an LSP connects to a particular buffer.
           on_attach = function(_, bufnr)

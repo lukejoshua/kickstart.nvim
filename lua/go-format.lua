@@ -6,4 +6,5 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     require('go.format').goimports()
   end,
   group = format_sync_grp,
+
 })

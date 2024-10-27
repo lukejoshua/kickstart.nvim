@@ -1,10 +1,13 @@
 return {
   'folke/which-key.nvim',
   enabled = true,
-  opts = {},
+  opts = {
+
+
+  },
   init = function()
     -- document existing key chains
-    require('which-key').register {
+    require('which-key').add {
       { "<leader>c",  group = "[C]ode" },
       { "<leader>c_", hidden = true },
       { "<leader>d",  group = "[D]ocument" },
