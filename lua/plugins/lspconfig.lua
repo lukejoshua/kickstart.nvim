@@ -7,10 +7,6 @@ return {
     { 'williamboman/mason.nvim', config = true },
     'williamboman/mason-lspconfig.nvim',
 
-    -- Useful status updates for LSP
-    -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-    { 'j-hui/fidget.nvim',       opts = {} },
-
     -- Additional lua configuration, makes nvim stuff amazing!
     'folke/neodev.nvim',
     'davidosomething/format-ts-errors.nvim',
@@ -55,7 +51,7 @@ return {
           workspace = { checkThirdParty = false },
           telemetry = { enable = false },
           -- NOTE: toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-          -- diagnostics = { disable = { 'missing-fields' } },
+          diagnostics = { disable = { 'missing-fields' } },
         },
       },
 
@@ -69,8 +65,6 @@ return {
     mason_lspconfig.setup {
       ensure_installed = vim.tbl_keys(servers),
     }
-
-    require('lspconfig').gleam.setup({})
 
     mason_lspconfig.setup_handlers {
       function(server_name)
@@ -129,6 +123,8 @@ return {
               end, 'Fix All')
             end
 
+            -- TODO: consolidate telescope keymaps
+            -- TODO: should I use something other than telescope for gd, gr?
             nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
             nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
             nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')

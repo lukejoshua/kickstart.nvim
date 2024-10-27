@@ -11,7 +11,6 @@ return {
       -- separator_style = 'slant',
       show_buffer_close_icons = false,
       diagnostics = 'nvim_lsp',
-      name_formatter = function() end,
       numbers = function(opts)
         local arrow = require('arrow.statusline')
         return arrow.text_for_statusline_with_icons(opts.id)
